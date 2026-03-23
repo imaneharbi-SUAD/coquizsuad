@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CO SUAD">
+<title>Compréhension Orale — SUAD — Département de FLE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-deep:#070b1a;--navy:#0d1833;--navy-mid:#162044;
+  --coral:#FF4757;--coral-glow:#ff6b81;--coral-deep:#e84118;
+  --teal:#00d2d3;--cyan:#01a3a4;--electric:#0097e6;
+  --purple:#6c5ce7;--violet:#a55eea;--magenta:#e056a0;
+  --yellow:#feca57;--gold:#ff9f43;--amber:#f0932b;
+  --mint:#55efc4;--green:#00b894;--lime:#a3cb38;
+  --pink:#fd79a8;--rose:#fab1a0;
+  --bg:#f0f3ff;--card:#ffffff;--text:#0d1833;--text-light:#5f6b8a;
+  --radius:20px
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,-40px) scale(1.1)}50%{transform:translate(-30px,-60px) scale(.95)}75%{transform:translate(-50px,30px) scale(1.05)}}
+@keyframes float2{0%,100%{transform:translate(0,0) rotate(0)}33%{transform:translate(-50px,40px) rotate(60deg)}66%{transform:translate(40px,-30px) rotate(-30deg)}}
+@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-50px) rotate(180deg)}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes letterIn{from{opacity:0;transform:translateY(30px) rotateX(-90deg) scale(.5)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes bgScroll{0%{background-position:0 0}100%{background-position:60px 60px}}
+
+.bg-blobs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(100px)}
+.blob-1{width:500px;height:500px;background:radial-gradient(circle,var(--teal),transparent 70%);top:-10%;left:-10%;animation:float1 18s ease-in-out infinite;opacity:.12}
+.blob-2{width:600px;height:600px;background:radial-gradient(circle,var(--purple),transparent 70%);bottom:-15%;right:-10%;animation:float2 22s ease-in-out infinite;opacity:.10}
+.blob-3{width:400px;height:400px;background:radial-gradient(circle,var(--coral),transparent 70%);top:30%;left:50%;animation:float3 25s ease-in-out infinite;opacity:.08}
+.blob-4{width:350px;height:350px;background:radial-gradient(circle,var(--gold),transparent 70%);bottom:20%;left:20%;animation:float1 28s ease-in-out infinite reverse;opacity:.06}
+
+/* === HERO === */
+.hero{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 40%,#1a1040 70%,var(--navy-deep) 100%);background-size:300% 300%;animation:gradShift 12s ease infinite;padding:60px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30h60M30 0v60' stroke='rgba(255,255,255,.03)' stroke-width='.5'/%3E%3C/svg%3E");animation:bgScroll 20s linear infinite;opacity:.5}
+.hero-canvas{position:absolute;inset:0;pointer-events:none}
+.hero .particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.hero .particle{position:absolute;border-radius:50%}
+@keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0}10%{opacity:1}90%{opacity:.7}100%{transform:translateY(-500px) scale(0);opacity:0}}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(60px)}
+.hero-orb-1{width:300px;height:300px;background:var(--purple);top:-80px;right:-60px;opacity:.25;animation:float1 15s ease-in-out infinite}
+.hero-orb-2{width:250px;height:250px;background:var(--teal);bottom:-60px;left:-40px;opacity:.2;animation:float2 18s ease-in-out infinite}
+.hero-orb-3{width:200px;height:200px;background:var(--coral);top:50%;left:60%;opacity:.15;animation:float3 20s ease-in-out infinite}
+.hero-content{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:3rem;font-weight:800;margin-bottom:8px;line-height:1.1}
+.hero h1 .letter{display:inline-block;opacity:0;animation:letterIn .6s cubic-bezier(.22,1,.36,1) forwards;text-shadow:0 0 40px rgba(0,210,211,.3)}
+.hero .subtitle{color:rgba(255,255,255,.6);font-size:1.05rem;font-weight:400;letter-spacing:.5px;margin-bottom:24px}
+.hero .stats-row{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+.hero .stat{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:.9rem;font-weight:600}
+.hero .stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.hero-logo{height:36px;filter:brightness(0) invert(1);opacity:.8;margin-bottom:16px;transition:opacity .3s}
+.hero-logo:hover{opacity:1}
+
+/* === WAVE === */
+.wave-sep{position:relative;z-index:2;margin-top:-2px}
+.wave-sep svg{display:block;width:100%}
+
+/* === RESULTS TAB === */
+.results-card{background:rgba(255,255,255,.7);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1.5px solid rgba(255,255,255,.6);border-radius:var(--radius);padding:24px;margin-bottom:12px;transition:all .35s}
+.results-card:hover{box-shadow:0 8px 30px rgba(13,24,51,.1)}
+.res-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.res-unit{display:inline-block;padding:4px 12px;border-radius:50px;font-size:.7rem;font-weight:800;letter-spacing:.5px}
+.res-score{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900}
+.res-bar{height:6px;background:rgba(13,24,51,.06);border-radius:3px;overflow:hidden;margin-top:10px}
+.res-bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.res-meta{font-size:.78rem;color:var(--text-light);margin-top:6px}
+.tab-bar{display:flex;gap:8px;justify-content:center;margin:0 auto 28px;max-width:400px}
+.tab-btn{flex:1;padding:12px;border-radius:14px;border:2px solid rgba(13,24,51,.08);background:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .3s;color:var(--text-light);text-align:center}
+.tab-btn.active{border-color:var(--teal);color:var(--teal);background:rgba(0,210,211,.04)}
+.tab-btn:hover{border-color:rgba(0,210,211,.3)}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeUp .4s ease}
+.empty-results{text-align:center;padding:40px;color:var(--text-light)}
+
+/* === CONTAINER === */
+.container{max-width:900px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+
+/* === SECTION === */
+.section{margin-bottom:48px}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 18px;border-radius:50px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+.badge-a2{background:linear-gradient(135deg,rgba(0,210,211,.12),rgba(0,210,211,.05));border:2px solid rgba(0,210,211,.25);color:var(--cyan)}
+.badge-b1{background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(108,92,231,.05));border:2px solid rgba(108,92,231,.25);color:var(--purple)}
+.section-line{flex:1;height:2px;border-radius:1px}
+.line-a2{background:linear-gradient(90deg,rgba(0,210,211,.3),transparent)}
+.line-b1{background:linear-gradient(90deg,rgba(108,92,231,.3),transparent)}
+
+/* === CARD === */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}
+.unit-card{background:rgba(255,255,255,.7);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1.5px solid rgba(255,255,255,.6);border-radius:var(--radius);cursor:pointer;transition:all .45s cubic-bezier(.22,1,.36,1);overflow:hidden;box-shadow:0 8px 40px rgba(13,24,51,.06);text-decoration:none;color:inherit;display:block;opacity:0;animation:fadeUp .6s cubic-bezier(.22,1,.36,1) forwards}
+.unit-card:hover{transform:translateY(-8px) scale(1.01)}
+.unit-card.a2:hover{box-shadow:0 0 30px rgba(0,210,211,.3),0 20px 60px rgba(13,24,51,.1);border-color:rgba(0,210,211,.3)}
+.unit-card.b1:hover{box-shadow:0 0 30px rgba(108,92,231,.3),0 20px 60px rgba(13,24,51,.1);border-color:rgba(108,92,231,.3)}
+.card-accent{height:4px;width:100%}
+.a2 .card-accent{background:linear-gradient(90deg,var(--teal),var(--electric),var(--mint))}
+.b1 .card-accent{background:linear-gradient(90deg,var(--purple),var(--violet),var(--magenta))}
+.card-body{padding:24px 26px 22px}
+.card-top{display:flex;align-items:start;justify-content:space-between;margin-bottom:14px}
+.card-level{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:50px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+.a2 .card-level{background:linear-gradient(135deg,rgba(0,210,211,.12),rgba(0,210,211,.05));border:2px solid rgba(0,210,211,.2);color:var(--cyan)}
+.b1 .card-level{background:linear-gradient(135deg,rgba(108,92,231,.12),rgba(108,92,231,.05));border:2px solid rgba(108,92,231,.2);color:var(--purple)}
+.card-arrow{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .35s;flex-shrink:0}
+.a2 .card-arrow{background:linear-gradient(135deg,var(--teal),var(--electric));color:#fff;box-shadow:0 4px 16px rgba(0,210,211,.25)}
+.b1 .card-arrow{background:linear-gradient(135deg,var(--purple),var(--violet));color:#fff;box-shadow:0 4px 16px rgba(108,92,231,.25)}
+.unit-card:hover .card-arrow{transform:translateX(4px) scale(1.1)}
+.card-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;margin-bottom:4px;line-height:1.25;color:var(--navy)}
+.card-sub{font-size:.8rem;color:var(--text-light);font-weight:500;margin-bottom:16px}
+.card-docs{display:flex;flex-direction:column;gap:6px}
+.doc-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-light);line-height:1.4}
+.doc-icon{font-size:.75rem;flex-shrink:0;width:18px;text-align:center}
+.card-footer{display:flex;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1.5px solid rgba(13,24,51,.05)}
+.card-tag{padding:4px 12px;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:.3px}
+.a2 .card-tag{background:rgba(0,210,211,.08);color:var(--cyan)}
+.b1 .card-tag{background:rgba(108,92,231,.08);color:var(--purple)}
+
+/* === FOOTER === */
+.footer{text-align:center;padding:40px 24px;color:var(--text-light);font-size:.8rem;position:relative;z-index:1}
+.footer a{color:var(--purple);text-decoration:none;font-weight:600}
+
+/* === SCROLLBAR === */
+::selection{background:rgba(108,92,231,.2)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(13,24,51,.12);border-radius:3px}
+
+/* === MOBILE === */
+@media(max-width:600px){
+  .hero h1{font-size:2rem}
+  .hero .stats-row{gap:16px}
+  .hero .stat-num{font-size:1.4rem}
+  .units-grid{grid-template-columns:1fr}
+  .container{padding:24px 16px 60px}
+  .card-title{font-size:19px}
+  .tab-bar{gap:4px}
+  .tab-btn{padding:10px 8px;font-size:.8rem}
+  .progress-wrap{flex-direction:column;gap:12px}
+  .badges-grid{grid-template-columns:1fr 1fr}
+}
+
+/* === WELCOME BANNER === */
+.welcome-banner{text-align:center;margin-bottom:24px;padding:16px;border-radius:16px;background:linear-gradient(135deg,rgba(0,210,211,.06),rgba(108,92,231,.04));border:1.5px solid rgba(0,210,211,.12)}
+.welcome-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--navy)}
+
+/* === PROGRESS BAR === */
+.progress-section{margin-bottom:28px;animation:fadeUp .5s ease}
+.progress-wrap{display:flex;align-items:center;gap:20px;padding:20px 24px;border-radius:18px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border:1.5px solid rgba(255,255,255,.6);box-shadow:0 6px 30px rgba(13,24,51,.05)}
+.progress-info{flex-shrink:0;text-align:center}
+.progress-count{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.progress-label{font-size:.75rem;color:var(--text-light);font-weight:600}
+.progress-bar-wrap{flex:1}
+.progress-track{height:12px;background:rgba(13,24,51,.06);border-radius:6px;overflow:hidden}
+.progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--electric),var(--purple));background-size:200%;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.progress-dots{display:flex;justify-content:space-between;margin-top:6px}
+.progress-dot{width:8px;height:8px;border-radius:50%;background:rgba(13,24,51,.08);transition:all .3s}
+.progress-dot.done{background:var(--teal);box-shadow:0 0 8px rgba(0,210,211,.4)}
+
+/* === CARD SCORE INDICATOR === */
+.card-score-badge{position:absolute;top:14px;right:14px;padding:6px 14px;border-radius:12px;font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:#fff;z-index:3;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.card-done-check{position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 52px 52px 0;border-color:transparent var(--green) transparent transparent;border-radius:0 var(--radius) 0 0;z-index:3}
+.card-done-check::after{content:'✓';position:absolute;top:6px;right:-44px;color:#fff;font-weight:900;font-size:.85rem}
+.unit-card{position:relative}
+.unit-card.completed{border-color:rgba(0,184,148,.25)}
+.unit-card.completed .card-accent{background:linear-gradient(90deg,var(--green),var(--mint),var(--teal))!important}
+
+/* === BADGES === */
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:24px}
+.badge-card{text-align:center;padding:18px 12px;border-radius:16px;background:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.5);transition:all .3s}
+.badge-card.earned{border-color:rgba(254,202,87,.3);background:linear-gradient(135deg,rgba(254,202,87,.08),rgba(255,159,67,.04))}
+.badge-card.locked{opacity:.4;filter:grayscale(.5)}
+.badge-icon{font-size:2rem;margin-bottom:6px}
+.badge-name{font-size:.75rem;font-weight:700;color:var(--navy)}
+.badge-desc{font-size:.65rem;color:var(--text-light);margin-top:2px}
+
+/* === STATS === */
+.stats-section{margin-bottom:24px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(13,24,51,.04)}
+.stat-row:last-child{border:none}
+.stat-type{font-size:.85rem;font-weight:600}
+.stat-val{font-weight:800;font-size:.9rem}
+
+/* === OBJECTIVES === */
+.objective-card{padding:18px 20px;border-radius:16px;background:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:14px}
+.obj-icon{font-size:1.5rem;flex-shrink:0}
+.obj-text{flex:1}
+.obj-title{font-size:.85rem;font-weight:700}
+.obj-desc{font-size:.75rem;color:var(--text-light)}
+.obj-status{font-size:.75rem;font-weight:800;padding:4px 12px;border-radius:50px}
+
+/* === XP BAR === */
+.xp-section{margin-bottom:24px;animation:fadeUp .5s ease .05s both}
+.xp-wrap{display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:18px;background:linear-gradient(135deg,rgba(108,92,231,.06),rgba(0,210,211,.04));border:1.5px solid rgba(108,92,231,.12)}
+.xp-avatar{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;box-shadow:0 6px 20px rgba(0,0,0,.1);position:relative;overflow:hidden}
+.xp-avatar::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,rgba(255,255,255,.2));pointer-events:none}
+.xp-info{flex:1;min-width:0}
+.xp-level-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;margin-bottom:2px}
+.xp-detail{font-size:.75rem;color:var(--text-light);margin-bottom:6px;font-weight:500}
+.xp-track{height:10px;background:rgba(13,24,51,.06);border-radius:5px;overflow:hidden;position:relative}
+.xp-fill{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.xp-badge{flex-shrink:0;text-align:center}
+.xp-total{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.xp-total-label{font-size:.65rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
+
+/* === STARS ON CARDS === */
+.card-stars{display:flex;gap:2px;margin-top:8px}
+.card-star{font-size:.9rem;transition:transform .3s}
+.card-star.lit{animation:pulse .8s ease infinite}
+
+/* === MOTIVATIONAL TOAST === */
+.motiv-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.9rem;color:#fff;box-shadow:0 10px 40px rgba(0,0,0,.2);animation:fadeUp .5s ease,fadeIn .5s ease;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
+
+/* === CONFETTI === */
+.confetti-piece{position:fixed;z-index:300;pointer-events:none}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0) scale(1);opacity:1}100%{transform:translateY(100vh) rotate(720deg) scale(0);opacity:0}}
+
+/* === MÉTHODO === */
+.meth-hero{text-align:center;padding:32px 24px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(108,92,231,.08),rgba(0,210,211,.05));border:2px solid rgba(108,92,231,.12);margin-bottom:24px;position:relative;overflow:hidden}
+.meth-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(108,92,231,.08)'/%3E%3C/svg%3E");pointer-events:none}
+.meth-hero h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:4px;position:relative}
+.meth-hero p{color:var(--text-light);font-size:.9rem;position:relative}
+.meth-section{margin-bottom:28px}
+.meth-section-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid rgba(13,24,51,.04)}
+.meth-section-title .meth-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:900;color:#fff;flex-shrink:0}
+.meth-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.meth-card{padding:20px;border-radius:18px;background:rgba(255,255,255,.75);backdrop-filter:blur(20px);border:1.5px solid rgba(255,255,255,.6);transition:all .35s;position:relative;overflow:hidden}
+.meth-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(13,24,51,.1)}
+.meth-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0}
+.meth-card-icon{font-size:1.8rem;margin-bottom:10px}
+.meth-card-title{font-weight:800;font-size:.95rem;margin-bottom:6px;color:var(--navy)}
+.meth-card-text{font-size:.84rem;color:var(--text-light);line-height:1.65}
+.meth-card-text strong{color:var(--navy)}
+.meth-tip{display:flex;gap:12px;padding:14px 18px;border-radius:14px;margin-bottom:8px;align-items:start;background:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.5);transition:all .3s}
+.meth-tip:hover{background:rgba(255,255,255,.9);transform:translateX(4px)}
+.meth-tip-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.meth-tip-content{flex:1}
+.meth-tip-title{font-weight:800;font-size:.88rem;margin-bottom:3px}
+.meth-tip-text{font-size:.82rem;color:var(--text-light);line-height:1.55}
+.meth-do-dont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+@media(max-width:600px){.meth-do-dont{grid-template-columns:1fr}.meth-cards{grid-template-columns:1fr}.meth-hero h2{font-size:1.4rem}}
+.meth-do,.meth-dont{padding:18px;border-radius:16px}
+.meth-do{background:rgba(0,184,148,.05);border:1.5px solid rgba(0,184,148,.15)}
+.meth-dont{background:rgba(255,71,87,.04);border:1.5px solid rgba(255,71,87,.12)}
+.meth-do-title,.meth-dont-title{font-weight:800;font-size:.88rem;margin-bottom:10px}
+.meth-do-title{color:var(--green)}
+.meth-dont-title{color:var(--coral)}
+.meth-list{list-style:none;padding:0}
+.meth-list li{font-size:.82rem;padding:5px 0;line-height:1.5;color:var(--text-light)}
+.meth-list li::before{margin-right:6px;font-weight:700}
+.meth-do .meth-list li::before{content:'✅'}
+.meth-dont .meth-list li::before{content:'❌'}
+.meth-quote{text-align:center;padding:24px;border-radius:16px;background:linear-gradient(135deg,rgba(254,202,87,.08),rgba(255,159,67,.04));border:1.5px solid rgba(254,202,87,.15);margin:20px 0;font-style:italic;font-size:1.05rem;font-weight:600;color:var(--navy);line-height:1.6}
+
+/* === VOCABULAIRE === */
+.vocab-search{width:100%;padding:14px 20px;border:2px solid rgba(13,24,51,.08);border-radius:16px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:500;background:#fff;outline:none;transition:all .3s;margin-bottom:14px}
+.vocab-search:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,210,211,.1)}
+.vocab-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.vf-btn{padding:8px 14px;border-radius:12px;border:2px solid rgba(13,24,51,.08);background:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .3s;color:var(--text-light)}
+.vf-btn:hover{border-color:rgba(108,92,231,.3)}
+.vf-btn.active{border-color:var(--purple);color:var(--purple);background:rgba(108,92,231,.04)}
+.vf-btn.a2.active{border-color:var(--teal);color:var(--teal);background:rgba(0,210,211,.04)}
+.vocab-unit{margin-bottom:28px;animation:fadeUp .4s ease both}
+.vocab-unit-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid rgba(13,24,51,.04)}
+.vocab-unit-count{font-size:.78rem;color:var(--text-light);margin-left:auto}
+.vocab-doc{font-size:.82rem;font-weight:700;color:var(--text-light);padding:6px 0;display:flex;align-items:center;gap:6px}
+.vocab-word{display:flex;gap:14px;padding:12px 16px;margin-bottom:5px;border-radius:14px;background:rgba(255,255,255,.75);border:1.5px solid rgba(255,255,255,.6);transition:all .3s}
+.vocab-word:hover{box-shadow:0 4px 20px rgba(13,24,51,.07);transform:translateX(3px)}
+.vocab-mot{font-weight:800;color:var(--navy);min-width:130px;font-size:.88rem;flex-shrink:0}
+.vocab-def{font-size:.85rem;color:var(--text-light);line-height:1.5}
+.vocab-count-badge{text-align:center;padding:16px;border-radius:14px;background:linear-gradient(135deg,rgba(108,92,231,.06),rgba(0,210,211,.04));border:1.5px solid rgba(108,92,231,.1);margin-bottom:16px}
+.vocab-count-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:600px){.vocab-word{flex-direction:column;gap:3px}.vocab-mot{min-width:auto}}
+</style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<div class="hero">
+  <canvas class="hero-canvas" id="starCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <img src="data:image/png;base64,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" class="hero-logo" alt="Sorbonne Université Abu Dhabi">
+    <h1 id="animTitle"></h1>
+    <div class="subtitle">Département de FLE — Préparation au DU</div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">10</span> épreuves</div>
+      <div class="stat"><span class="stat-num">48</span> documents audio</div>
+      <div class="stat"><span class="stat-num">326</span> questions</div>
+    </div>
+  </div>
+</div>
+
+<div class="wave-sep">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f0f3ff"/>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- WELCOME -->
+  <div id="welcomeBanner"></div>
+
+  <!-- TABS -->
+  <div class="tab-bar">
+    <div class="tab-btn active" onclick="switchTab('epreuves',this)">🎧 Épreuves</div>
+    <div class="tab-btn" onclick="switchTab('resultats',this)">📊 Résultats</div>
+    <div class="tab-btn" onclick="switchTab('objectifs',this)">🎯 Objectifs</div>
+    <div class="tab-btn" onclick="switchTab('vocabulaire',this)">📖 Vocabulaire</div>
+    <div class="tab-btn" onclick="switchTab('methodo',this)">🧠 Méthodo</div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progressSection"></div>
+
+  <!-- XP & AVATAR -->
+  <div id="xpSection"></div>
+
+  <!-- MOTIVATIONAL -->
+  <div id="motivToast"></div>
+
+  <div class="tab-content active" id="tab-epreuves">
+
+  <!-- A2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge badge-a2">🎧 Niveau A2</span>
+      <div class="section-line line-a2"></div>
+    </div>
+    <div class="units-grid">
+
+      <a href="a2-u8.html" class="unit-card a2" data-unite="A2 — Unité 8" style="animation-delay:.1s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">A2 — Unité 8</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Solidarité et habitat</div>
+          <div class="card-sub">Bénévolat, entraide, logement écologique</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Interview d'un bénévole de la Croix-Rouge</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Les collégiens qui aident</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Rendre service — Le Carillon</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Maison en bois en kit — Gablok</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Une bénévole témoigne — Sandrine</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- B1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge badge-b1">🎧 Niveau B1</span>
+      <div class="section-line line-b1"></div>
+    </div>
+    <div class="units-grid">
+
+      <a href="b1-u1-a.html" class="unit-card b1" data-unite="B1 — Unité 1a" style="animation-delay:.15s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 1a</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Relations et liens sociaux</div>
+          <div class="card-sub">Amitié, isolement, initiatives solidaires</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Amies de longue date</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Contre l'isolement — Le banc de l'amitié</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Move to earn — Des applis qui paient pour marcher</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Paroles de femmes — Clara Luciani</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> SOS Amitié — Les jeunes et la solitude</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u1-b.html" class="unit-card b1" data-unite="B1 — Unité 1b" style="animation-delay:.2s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 1b</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Communication et numérique</div>
+          <div class="card-sub">Dématérialisation, éloquence, nouvelles applis</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Bye le papier — La dématérialisation</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Eloquentia HEC — Interview de Charlotte</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Ten Ten — L'appli talkie-walkie</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Tout se loue, même les amis !</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Comment trouver un bon job étudiant ?</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u2-a.html" class="unit-card b1" data-unite="B1 — Unité 2a" style="animation-delay:.25s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 2a</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Monde du travail</div>
+          <div class="card-sub">Emploi des jeunes, codes professionnels, CV</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Bertrand — Welcome to the Jungle</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Burundi — Un programme pour l'emploi des jeunes</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> La génération Z bouscule les codes du travail</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Les pauses au travail — Le cerveau</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Léna Jouault — Le CV qui a fait le buzz</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u2-b.html" class="unit-card b1" data-unite="B1 — Unité 2b" style="animation-delay:.3s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 2b</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Parcours et vocations</div>
+          <div class="card-sub">Journalisme, médecine, coworking, reconversion</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Julien Laurens — Journaliste sportif</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> La montée en puissance du coworking</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Pourquoi j'ai choisi médecine</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Supaéro — L'école de Thomas Pesquet</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Vis mon job — Tester un nouveau métier</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u3-a.html" class="unit-card b1" data-unite="B1 — Unité 3a" style="animation-delay:.35s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 3a</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Santé et bien-être</div>
+          <div class="card-sub">Santé mentale, Pilates, rire, méditation</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Dr Jimmy Mohamed — Santé mentale sans médicaments</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Le Pilates — Ce sport qui cartonne</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> La rigologie — La science du rire</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Le zazen — Méditation japonaise</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">4 documents</span>
+            <span class="card-tag">28 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u3-b.html" class="unit-card b1" data-unite="B1 — Unité 3b" style="animation-delay:.4s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 3b</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Modes de vie</div>
+          <div class="card-sub">Minimalisme, habitat alternatif, sport, séries</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Bienvenue chez une minimaliste</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> La mini-maison la plus célèbre de Montréal</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Faut-il faire du sport le matin ?</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Mytho — La série sur le mensonge</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">4 documents</span>
+            <span class="card-tag">28 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u4-a.html" class="unit-card b1" data-unite="B1 — Unité 4a" style="animation-delay:.45s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 4a</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Écologie et créativité</div>
+          <div class="card-sub">Plastique, street art, mode éco-responsable</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Le plastique dans notre quotidien</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> L'exposition écolo au musée</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Nice — Street art sur les containers</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Une artiste transforme les déchets en tenues</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Février sans supermarché</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u4-b.html" class="unit-card b1" data-unite="B1 — Unité 4b" style="animation-delay:.5s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 4b</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Environnement et solidarité</div>
+          <div class="card-sub">Biodiversité, déchets, épicerie solidaire, upcycling</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> La France — Déchets plastiques en Méditerranée</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Planter des haies pour protéger la biodiversité</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> L'épicerie solidaire de Kembs</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> William Amor — Des fleurs éternelles en déchets</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> L'écologie — Un truc de femme ?</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">5 documents</span>
+            <span class="card-tag">35 questions</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="b1-u5-a.html" class="unit-card b1" data-unite="B1 — Unité 5a" style="animation-delay:.55s">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div><span class="card-level">B1 — Unité 5a</span></div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div class="card-title">Sciences et découvertes</div>
+          <div class="card-sub">Énergie, Mars, Lascaux, médias pour les jeunes</div>
+          <div class="card-docs">
+            <div class="doc-item"><span class="doc-icon">🎧</span> Un combustible écologique au Congo</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Pourquoi il faut aller sur Mars</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> La découverte de la grotte de Lascaux</div>
+            <div class="doc-item"><span class="doc-icon">🎧</span> Hugo informe — Le podcast d'actualité pour les jeunes</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-tag">4 documents</span>
+            <span class="card-tag">28 questions</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  </div><!-- fin tab-epreuves -->
+
+  <!-- TAB RÉSULTATS -->
+  <div class="tab-content" id="tab-resultats"></div>
+
+  <!-- TAB OBJECTIFS -->
+  <div class="tab-content" id="tab-objectifs"></div>
+
+  <!-- TAB MÉTHODO -->
+  <div class="tab-content" id="tab-methodo"></div>
+
+  <!-- TAB VOCABULAIRE -->
+  <div class="tab-content" id="tab-vocabulaire"></div>
+
+</div>
+
+<div class="footer">
+  Conçu par <strong>Imane Harbi</strong> — Sorbonne Université Abu Dhabi
+</div>
+
+<script>
+// ===== DATA =====
+var TOTAL_UNITS=10;
+function getResults(){try{return JSON.parse(localStorage.getItem('quiz_results')||'[]')}catch(e){return[]}}
+function getProfile(){try{return JSON.parse(localStorage.getItem('quiz_student_profile')||'{}')}catch(e){return{}}}
+function getCompletedUnits(){var R=getResults(),m={};R.forEach(function(r){var u=r.unite||r.niveau;if(!m[u])m[u]=[];m[u].push(r)});var lat={};Object.keys(m).forEach(function(u){m[u].sort(function(a,b){return new Date(b.date)-new Date(a.date)});lat[u]=m[u][0];lat[u]._att=m[u].length});return lat}
+function gColor(n){return n>=16?'var(--green)':n>=14?'var(--cyan)':n>=12?'var(--electric)':n>=10?'var(--gold)':n>=8?'var(--amber)':'var(--coral)'}
+function gHex(n){return n>=16?'#00b894':n>=14?'#01a3a4':n>=12?'#0097e6':n>=10?'#ff9f43':n>=8?'#f0932b':'#FF4757'}
+function gLabel(n){return n>=16?'Excellent':n>=14?'Très bien':n>=12?'Bien':n>=10?'Passable':n>=8?'Insuffisant':'Très insuffisant'}
+function avg(a){return a.length?Math.round(a.reduce(function(s,v){return s+v},0)/a.length*100)/100:0}
+
+// ===== XP SYSTEM =====
+var LEVELS=[
+  {name:'Débutant',icon:'🐣',min:0,bg:'linear-gradient(135deg,#dfe6e9,#b2bec3)',col:'#636e72'},
+  {name:'Explorateur',icon:'🦊',min:60,bg:'linear-gradient(135deg,#00d2d3,#0097e6)',col:'#0097e6'},
+  {name:'Expert',icon:'🦁',min:180,bg:'linear-gradient(135deg,#feca57,#ff9f43)',col:'#ff9f43'},
+  {name:'Maître',icon:'🐉',min:350,bg:'linear-gradient(135deg,#6c5ce7,#a55eea)',col:'#6c5ce7'},
+  {name:'Légende',icon:'👑',min:500,bg:'linear-gradient(135deg,#FF4757,#e056a0)',col:'#FF4757'}
+];
+function calcXP(results){var xp=0;results.forEach(function(r){var n=r.note||0;if(n>=18)xp+=60;else if(n>=16)xp+=50;else if(n>=14)xp+=40;else if(n>=12)xp+=30;else if(n>=10)xp+=20;else xp+=10});return xp}
+function getLevel(xp){var lv=LEVELS[0];for(var i=LEVELS.length-1;i>=0;i--){if(xp>=LEVELS[i].min){lv=LEVELS[i];lv.index=i;break}}return{current:lv,next:LEVELS[lv.index+1]||null,xp:xp}}
+
+// ===== STARS =====
+function getStars(n){return n>=17?3:n>=14?2:n>=10?1:0}
+function starsHTML(n){var s=getStars(n),h='<div class="card-stars">';for(var i=0;i<3;i++)h+='<span class="card-star'+(i<s?' lit':'')+'">'+(i<s?'⭐':'☆')+'</span>';return h+'</div>'}
+
+// ===== CONFETTI =====
+function launchConfetti(){var colors=['#FF4757','#00d2d3','#6c5ce7','#feca57','#55efc4','#fd79a8','#ff9f43','#a55eea'];for(var i=0;i<80;i++){var p=document.createElement('div');p.className='confetti-piece';var size=4+Math.random()*8;p.style.cssText='left:'+Math.random()*100+'vw;top:-20px;width:'+size+'px;height:'+size+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';animation:confettiFall '+(2+Math.random()*2)+'s ease-out '+(Math.random()*.8)+'s forwards;position:fixed;z-index:300;pointer-events:none';document.body.appendChild(p);setTimeout(function(el){el.remove()},5000,p)}}
+
+// ===== MOTIVATIONAL =====
+var MOTIV_MSGS=[
+  {msg:"Tu gères ! Continue comme ça 💪",bg:"linear-gradient(135deg,#6c5ce7,#a55eea)"},
+  {msg:"Chaque épreuve te rapproche du sommet 🏔️",bg:"linear-gradient(135deg,#00d2d3,#0097e6)"},
+  {msg:"La régularité, c'est la clé 🔑",bg:"linear-gradient(135deg,#ff9f43,#f0932b)"},
+  {msg:"Tu es sur la bonne voie 🚀",bg:"linear-gradient(135deg,#6c5ce7,#e056a0)"},
+  {msg:"Le français n'a plus de secrets pour toi 🇫🇷",bg:"linear-gradient(135deg,#00b894,#55efc4)"},
+  {msg:"Bravo pour ton engagement ! ⭐",bg:"linear-gradient(135deg,#feca57,#ff9f43)"},
+  {msg:"L'écoute, c'est ton super-pouvoir 🎧",bg:"linear-gradient(135deg,#0097e6,#6c5ce7)"}
+];
+function showMotivToast(){var R=getResults();if(!R.length)return;var cu=getCompletedUnits(),rem=TOTAL_UNITS-Object.keys(cu).length,m;if(rem>0&&rem<=3)m={msg:'Plus que '+rem+' épreuve'+(rem>1?'s':'')+' ! 🔥',bg:'linear-gradient(135deg,#FF4757,#ff9f43)'};else m=MOTIV_MSGS[Math.floor(Math.random()*MOTIV_MSGS.length)];document.getElementById('motivToast').innerHTML='<div class="motiv-toast" style="background:'+m.bg+'">'+m.msg+'</div>';setTimeout(function(){document.getElementById('motivToast').innerHTML=''},4000)}
+
+// ===== TITLE =====
+(function(){var text="Compréhension Orale",el=document.getElementById('animTitle');el.innerHTML='';for(var i=0;i<text.length;i++){var span=document.createElement('span');span.className='letter';span.textContent=text[i]===' '?'\u00A0':text[i];span.style.animationDelay=(.3+i*.05)+'s';el.appendChild(span)}})();
+
+// ===== STARFIELD =====
+(function(){var canvas=document.getElementById('starCanvas');if(!canvas)return;var ctx=canvas.getContext('2d'),stars=[],colors=['rgba(0,210,211,','rgba(108,92,231,','rgba(255,71,87,','rgba(254,202,87,','rgba(85,239,196,','rgba(253,121,168,','rgba(0,151,230,'];function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;init()}function init(){stars=[];for(var i=0;i<35;i++)stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2.5+.5,color:colors[Math.floor(Math.random()*colors.length)],speed:.2+Math.random()*.5,phase:Math.random()*Math.PI*2,freq:.5+Math.random()*2})}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);var t=Date.now()/1000;for(var i=0;i<stars.length;i++){var s=stars[i],alpha=.15+.4*(.5+.5*Math.sin(t*s.freq+s.phase)),r=s.r*(.7+.3*Math.sin(t*s.freq+s.phase));ctx.beginPath();ctx.arc(s.x,s.y,r,0,Math.PI*2);ctx.fillStyle=s.color+alpha+')';ctx.fill();ctx.beginPath();ctx.arc(s.x,s.y,r*2,0,Math.PI*2);ctx.fillStyle=s.color+(alpha*.12)+')';ctx.fill();s.y-=s.speed*.3;s.x+=Math.sin(t*.5+s.phase)*.15;if(s.y<-5){s.y=canvas.height+5;s.x=Math.random()*canvas.width}}requestAnimationFrame(draw)}resize();window.addEventListener('resize',resize);draw()})();
+
+// ===== PARTICLES =====
+(function(){var c=document.getElementById('particles');if(!c)return;var colors=['rgba(0,210,211,.7)','rgba(108,92,231,.6)','rgba(255,71,87,.5)','rgba(254,202,87,.6)','rgba(85,239,196,.6)','rgba(253,121,168,.5)','rgba(0,151,230,.6)'];for(var i=0;i<20;i++){var p=document.createElement('div');p.className='particle';var size=2+Math.random()*7,col=colors[Math.floor(Math.random()*colors.length)];p.style.cssText='width:'+size+'px;height:'+size+'px;left:'+Math.random()*100+'%;bottom:-10px;background:'+col+';animation:floatUp '+(6+Math.random()*14)+'s linear infinite;animation-delay:'+Math.random()*12+'s;box-shadow:0 0 '+(size*3)+'px '+col;c.appendChild(p)}})();
+
+// ===== WELCOME =====
+function renderWelcome(){var p=getProfile(),el=document.getElementById('welcomeBanner');if(p.prenom)el.innerHTML='<div class="welcome-banner"><span class="welcome-name">Bonjour '+p.prenom+' 👋</span></div>';else el.innerHTML=''}
+
+// ===== PROGRESS BAR =====
+function renderProgress(){var cu=getCompletedUnits(),count=Object.keys(cu).length,pct=Math.round(count/TOTAL_UNITS*100);var el=document.getElementById('progressSection');var h='<div class="progress-section"><div class="progress-wrap"><div class="progress-info"><div class="progress-count">'+count+'/'+TOTAL_UNITS+'</div><div class="progress-label">épreuves</div></div><div class="progress-bar-wrap"><div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div><div class="progress-dots">';for(var i=0;i<TOTAL_UNITS;i++)h+='<div class="progress-dot'+(i<count?' done':'')+'"></div>';h+='</div></div></div></div>';el.innerHTML=h}
+
+// ===== XP & AVATAR =====
+function renderXP(){var R=getResults(),el=document.getElementById('xpSection');if(!R.length){el.innerHTML='';return}var xp=calcXP(R),lv=getLevel(xp);var pct=lv.next?Math.round((xp-lv.current.min)/(lv.next.min-lv.current.min)*100):100;var h='<div class="xp-section"><div class="xp-wrap"><div class="xp-avatar" style="background:'+lv.current.bg+'">'+lv.current.icon+'</div><div class="xp-info"><div class="xp-level-name" style="color:'+lv.current.col+'">'+lv.current.name+'</div><div class="xp-detail">'+(lv.next?'Encore '+(lv.next.min-xp)+' XP → '+lv.next.name+' '+lv.next.icon:'Niveau maximum atteint !')+'</div><div class="xp-track"><div class="xp-fill" style="width:'+pct+'%;background:'+lv.current.bg+'"></div></div></div><div class="xp-badge"><div class="xp-total">'+xp+'</div><div class="xp-total-label">XP</div></div></div></div>';el.innerHTML=h}
+
+// ===== CARD INDICATORS + STARS =====
+function renderCardIndicators(){var cu=getCompletedUnits();document.querySelectorAll('.unit-card[data-unite]').forEach(function(card){var unite=card.getAttribute('data-unite');var old=card.querySelector('.card-score-badge');if(old)old.remove();var oldC=card.querySelector('.card-done-check');if(oldC)oldC.remove();var oldS=card.querySelector('.card-stars');if(oldS)oldS.remove();card.classList.remove('completed');if(cu[unite]){var r=cu[unite];card.classList.add('completed');var badge=document.createElement('div');badge.className='card-score-badge';badge.style.background=gHex(r.note);badge.textContent=r.note+'/20';card.querySelector('.card-body').style.position='relative';card.querySelector('.card-body').appendChild(badge);var check=document.createElement('div');check.className='card-done-check';card.appendChild(check);var footer=card.querySelector('.card-footer');if(footer){var sd=document.createElement('div');sd.innerHTML=starsHTML(r.note);footer.appendChild(sd.firstChild)}}})}
+
+// ===== TABS =====
+function switchTab(tab,btn){document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});document.getElementById('tab-'+tab).classList.add('active');if(btn)btn.classList.add('active');if(tab==='resultats')renderResults();if(tab==='objectifs')renderObjectifs();if(tab==='methodo')renderMethodo();if(tab==='vocabulaire')renderVocabulaire()}
+
+// ===== RÉSULTATS =====
+function renderResults(){var el=document.getElementById('tab-resultats'),R=getResults();if(!R.length){el.innerHTML='<div style="text-align:center;padding:50px"><div style="font-size:2.5rem;margin-bottom:12px">📝</div><h3 style="font-family:\'Playfair Display\',serif;margin-bottom:8px">Aucun résultat</h3><p style="color:var(--text-light)">Complétez une épreuve pour voir vos résultats.</p></div>';return}
+var cu=getCompletedUnits(),allN=Object.values(cu).map(function(r){return r.note}),a=avg(allN),xp=calcXP(R),lv=getLevel(xp),totalStars=0;allN.forEach(function(n){totalStars+=getStars(n)});
+var h='<div style="text-align:center;padding:28px;border-radius:18px;background:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.6);margin-bottom:20px"><div style="font-size:3rem;margin-bottom:4px">'+lv.current.icon+'</div><div style="font-family:\'Playfair Display\',serif;font-size:1rem;font-weight:800;color:'+lv.current.col+';margin-bottom:8px">'+lv.current.name+' · '+xp+' XP</div><div style="font-family:\'Playfair Display\',serif;font-size:2.8rem;font-weight:900;color:'+gColor(a)+'">'+a+'<span style="font-size:1rem;font-weight:400;opacity:.5">/20</span></div><div style="font-size:.85rem;color:var(--text-light);margin-top:4px">'+allN.length+'/'+TOTAL_UNITS+' épreuves · '+totalStars+'/'+(TOTAL_UNITS*3)+' ⭐ · '+gLabel(a)+'</div></div>';
+h+=renderBadgesHTML(R,cu,allN,xp);h+=renderStatsHTML(R);
+h+='<h3 style="font-family:\'Playfair Display\',serif;margin:24px 0 12px">Notes par unité</h3>';
+Object.keys(cu).forEach(function(u){var r=cu[u],col=gColor(r.note),isA2=u.indexOf('A2')!==-1;var dt=new Date(r.date).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});var dm=Math.floor((r.dureeSecondes||0)/60),ds=(r.dureeSecondes||0)%60;var xpGain=r.note>=18?60:r.note>=16?50:r.note>=14?40:r.note>=12?30:r.note>=10?20:10;
+h+='<div class="results-card"><div class="res-header"><span class="res-unit" style="background:'+(isA2?'rgba(0,210,211,.1)':'rgba(108,92,231,.1)')+';color:'+(isA2?'var(--cyan)':'var(--purple)')+'">'+u+'</span><div style="text-align:right"><span class="res-score" style="color:'+col+'">'+r.note+'<span style="font-size:.9rem;font-weight:400;opacity:.5">/20</span></span>'+starsHTML(r.note)+'</div></div><div style="font-size:.85rem;font-weight:600;margin-bottom:4px">'+gLabel(r.note)+' — '+r.pourcentage+'% · <span style="color:var(--purple)">+'+xpGain+' XP</span></div><div class="res-bar"><div class="res-bar-fill" style="width:'+r.pourcentage+'%;background:'+col+'"></div></div><div class="res-meta">'+dt+' · '+dm+'m'+(ds<10?'0':'')+ds+'s'+(r._att>1?' · '+r._att+' tentatives':'')+'</div></div>'});
+el.innerHTML=h}
+
+// ===== BADGES =====
+function renderBadgesHTML(R,cu,allN,xp){var count=Object.keys(cu).length,a=avg(allN);var badges=[{icon:'🎯',name:'Premier pas',desc:'1 épreuve',earned:count>=1},{icon:'⭐',name:'En route',desc:'3 épreuves',earned:count>=3},{icon:'🔥',name:'Sur sa lancée',desc:'5 épreuves',earned:count>=5},{icon:'👑',name:'Champion',desc:'10/10',earned:count>=10},{icon:'💎',name:'Excellence',desc:'Moy. ≥ 16',earned:allN.length>0&&a>=16},{icon:'🏆',name:'Réussite totale',desc:'Tout ≥ 10',earned:allN.length>=3&&allN.every(function(n){return n>=10})},{icon:'🌟',name:'Triple étoile',desc:'Un 17+',earned:allN.some(function(n){return n>=17})},{icon:'🦊',name:'Explorateur',desc:'60 XP',earned:xp>=60},{icon:'🦁',name:'Expert',desc:'180 XP',earned:xp>=180},{icon:'🐉',name:'Maître',desc:'350 XP',earned:xp>=350}];
+var prev=0;try{prev=parseInt(localStorage.getItem('co_badges_count')||'0')}catch(e){}var earned=badges.filter(function(b){return b.earned}).length;if(earned>prev){launchConfetti();localStorage.setItem('co_badges_count',String(earned))}
+var h='<h3 style="font-family:\'Playfair Display\',serif;margin:20px 0 12px">Badges ('+earned+'/'+badges.length+')</h3><div class="badges-grid">';badges.forEach(function(b){h+='<div class="badge-card '+(b.earned?'earned':'locked')+'"><div class="badge-icon">'+(b.earned?b.icon:'🔒')+'</div><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+b.desc+'</div></div>'});return h+'</div>'}
+
+// ===== STATS =====
+function renderStatsHTML(R){var types={qcm:{ok:0,total:0,label:'QCM'},qcm_multi:{ok:0,total:0,label:'QCM multiple'},vf:{ok:0,total:0,label:'Vrai / Faux'},vf_just:{ok:0,total:0,label:'V/F justifié'},open:{ok:0,total:0,label:'Question ouverte'},assoc:{ok:0,total:0,label:'Association'}};R.forEach(function(r){if(!r.details)return;r.details.forEach(function(d){if(types[d.type]){types[d.type].total++;if(d.correct)types[d.type].ok++}})});if(!Object.values(types).some(function(t){return t.total>0}))return '';
+var h='<h3 style="font-family:\'Playfair Display\',serif;margin:24px 0 12px">Points forts / faibles</h3><div style="padding:16px 20px;border-radius:16px;background:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.5);margin-bottom:20px">';Object.keys(types).forEach(function(k){var t=types[k];if(!t.total)return;var pct=Math.round(t.ok/t.total*100),col=pct>=70?'var(--green)':pct>=50?'var(--gold)':'var(--coral)',icon=pct>=70?'💪':pct>=50?'👍':'📚';h+='<div class="stat-row"><div class="stat-type">'+icon+' '+t.label+'</div><div><span class="stat-val" style="color:'+col+'">'+pct+'%</span> <span style="font-size:.75rem;color:var(--text-light)">('+t.ok+'/'+t.total+')</span></div></div>'});return h+'</div>'}
+
+// ===== OBJECTIFS =====
+function renderObjectifs(){var el=document.getElementById('tab-objectifs'),cu=getCompletedUnits(),count=Object.keys(cu).length,allN=Object.values(cu).map(function(r){return r.note}),a=avg(allN),xp=calcXP(getResults()),lv=getLevel(xp),target=parseFloat(localStorage.getItem('co_objectif')||'14');
+var h='<h3 style="font-family:\'Playfair Display\',serif;margin-bottom:16px">Mon objectif</h3><div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;padding:18px 20px;border-radius:16px;background:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.6)"><span style="font-size:1.5rem">🎯</span><div style="flex:1"><div style="font-size:.85rem;font-weight:700;margin-bottom:6px">Objectif : <span style="color:var(--electric)">'+target+'/20</span></div><input type="range" min="8" max="20" step="0.5" value="'+target+'" oninput="updateObjectif(this.value)" style="width:100%;accent-color:var(--teal)"></div></div>';
+var objs=[{icon:'📝',title:'Compléter les '+TOTAL_UNITS+' épreuves',desc:count+'/'+TOTAL_UNITS,done:count>=TOTAL_UNITS,pct:count/TOTAL_UNITS*100},{icon:'🎯',title:'Moyenne ≥ '+target,desc:allN.length?'Actuelle : '+a:'—',done:a>=target&&allN.length>0,pct:allN.length?Math.min(100,Math.round(a/target*100)):0},{icon:'✅',title:'Aucune note < 10',desc:allN.length?allN.filter(function(n){return n<10}).length+' note(s) < 10':'—',done:allN.length>0&&allN.every(function(n){return n>=10}),pct:allN.length?Math.round(allN.filter(function(n){return n>=10}).length/allN.length*100):0},{icon:'⭐',title:'Obtenir 3 étoiles (17+)',desc:allN.length?'Meilleure : '+Math.max.apply(null,allN):'—',done:allN.some(function(n){return n>=17}),pct:allN.length?Math.min(100,Math.round(Math.max.apply(null,allN)/17*100)):0},{icon:lv.next?lv.next.icon:'👑',title:lv.next?'Niveau '+lv.next.name:'Max atteint !',desc:lv.next?(lv.next.min-xp)+' XP restants':'Bravo !',done:!lv.next,pct:lv.next?Math.round((xp-lv.current.min)/(lv.next.min-lv.current.min)*100):100}];
+h+='<h3 style="font-family:\'Playfair Display\',serif;margin:20px 0 12px">Défis</h3>';objs.forEach(function(o){var sc=o.done?'var(--green)':'var(--gold)';h+='<div class="objective-card"><div class="obj-icon">'+o.icon+'</div><div class="obj-text"><div class="obj-title">'+o.title+'</div><div class="obj-desc">'+o.desc+'</div><div class="bar-track" style="margin-top:6px;height:5px"><div class="bar-fill" style="width:'+o.pct+'%;background:'+sc+'"></div></div></div><div class="obj-status" style="background:'+(o.done?'rgba(0,184,148,.1)':'rgba(255,159,67,.1)')+';color:'+sc+'">'+(o.done?'✅':Math.round(o.pct)+'%')+'</div></div>'});el.innerHTML=h}
+// ===== VOCABULAIRE =====
+var VOCAB=[{"id": "a2-u8", "label": "A2 — Unité 8", "title": "Solidarité et habitat", "words": [{"mot": "Une maraude", "def": "Tournée nocturne pour aller à la rencontre des sans-abri.", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Un SDF (sans domicile fixe)", "def": "Personne qui n'a pas de logement et vit dans la rue.", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Un foyer d'urgence", "def": "Lieu d'accueil temporaire pour les personnes en difficulté.", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Le plan grand froid", "def": "Dispositif activé par les autorités quand les températures sont très basses.", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Le ressenti", "def": "La température perçue par le corps (avec le vent, l'humidité).", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Un squat", "def": "Lieu occupé illégalement pour se loger.", "doc": "Interview d'un bénévole de la Croix-Rouge"}, {"mot": "Un jardin pédagogique", "def": "Espace de culture utilisé pour apprendre et partager des connaissances.", "doc": "Les collégiens qui aident"}, {"mot": "Les classes Croix-Rouge", "def": "Programme scolaire en partenariat avec la Croix-Rouge pour sensibiliser les élèves.", "doc": "Les collégiens qui aident"}, {"mot": "Se renfermer sur soi-même", "def": "Ne pas s'intéresser aux autres, rester isolé.", "doc": "Les collégiens qui aident"}, {"mot": "Les fournitures scolaires", "def": "Le matériel nécessaire pour l'école (cahiers, stylos, etc.).", "doc": "Les collégiens qui aident"}, {"mot": "Un migrant", "def": "Personne qui quitte son pays pour s'installer dans un autre.", "doc": "Les collégiens qui aident"}, {"mot": "Défavorisé", "def": "Qui a peu de ressources, en difficulté sociale ou économique.", "doc": "Les collégiens qui aident"}, {"mot": "Un commerçant", "def": "Personne qui tient un magasin ou un commerce.", "doc": "Rendre service — Le Carillon"}, {"mot": "Gracieusement", "def": "Gratuitement, sans demander d'argent.", "doc": "Rendre service — Le Carillon"}, {"mot": "Un pictogramme", "def": "Petit dessin ou symbole qui représente une information.", "doc": "Rendre service — Le Carillon"}, {"mot": "Le lien social", "def": "Les relations et échanges entre les personnes d'une communauté.", "doc": "Rendre service — Le Carillon"}, {"mot": "Un en-cas", "def": "Petite nourriture rapide, un snack.", "doc": "Rendre service — Le Carillon"}, {"mot": "Un label", "def": "Signe de reconnaissance, marque de qualité affichée.", "doc": "Rendre service — Le Carillon"}, {"mot": "L'autoconstruction", "def": "Le fait de construire soi-même sa propre maison.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "Un bloc", "def": "Élément de construction que l'on empile.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "L'OSB", "def": "Panneau de bois recyclé compressé, utilisé en construction.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "L'EPS (frigolite)", "def": "Matériau isolant léger, sorte de polystyrène.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "Des chevrons", "def": "Pièces de bois utilisées pour fixer les éléments entre eux.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "Manutentionner", "def": "Déplacer, manipuler des objets ou matériaux.", "doc": "Maison en bois en kit — Gablok"}, {"mot": "Un sans-papier", "def": "Personne qui vit dans un pays sans avoir de documents de séjour légaux.", "doc": "Une bénévole témoigne — Sandrine"}, {"mot": "Le bénévolat", "def": "Activité faite gratuitement, sans être payé, pour aider les autres.", "doc": "Une bénévole témoigne — Sandrine"}, {"mot": "Coacher", "def": "Accompagner, guider et motiver quelqu'un dans un projet.", "doc": "Une bénévole témoigne — Sandrine"}, {"mot": "Un projet professionnel", "def": "Plan que l'on construit pour trouver un emploi ou un métier.", "doc": "Une bénévole témoigne — Sandrine"}, {"mot": "Répercuter", "def": "Transmettre, avoir un effet positif sur d'autres personnes.", "doc": "Une bénévole témoigne — Sandrine"}, {"mot": "La matière brute", "def": "Ici : les personnes telles qu'elles sont, sans jugement.", "doc": "Une bénévole témoigne — Sandrine"}]}, {"id": "b1-u1-a", "label": "B1 — Unité 1a", "title": "Relations et liens sociaux", "words": [{"mot": "Sceller", "def": "Marquer de façon définitive, rendre solide et durable.", "doc": "Amies de longue date"}, {"mot": "Complémentaires", "def": "Qui se complètent mutuellement grâce à leurs différences.", "doc": "Amies de longue date"}, {"mot": "Être épaulée", "def": "Être soutenue, aidée par quelqu'un dans les moments difficiles.", "doc": "Amies de longue date"}, {"mot": "Effleurer", "def": "Toucher légèrement ; ici : traverser l'esprit, ressentir brièvement.", "doc": "Amies de longue date"}, {"mot": "Un tabou", "def": "Un sujet dont on ne parle pas, interdit de discussion.", "doc": "Amies de longue date"}, {"mot": "La colocation", "def": "Le fait de partager un logement avec d'autres personnes.", "doc": "Amies de longue date"}, {"mot": "L'isolement", "def": "Le fait d'être seul, séparé des autres.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "L'empathie", "def": "La capacité à comprendre et partager les émotions des autres.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "Tendre la main", "def": "Offrir son aide, faire un geste de solidarité.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "Mis de côté", "def": "Exclu, ignoré par les autres.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "Une cour de récréation", "def": "L'espace extérieur d'une école où les enfants jouent pendant les pauses.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "Se moquer de", "def": "Rire de quelqu'un de manière méchante, ridiculiser.", "doc": "Contre l'isolement — Le banc de l'amitié"}, {"mot": "Un podomètre", "def": "Outil qui compte le nombre de pas effectués.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Une monnaie virtuelle", "def": "Argent numérique qui n'existe pas sous forme physique.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Un challenge", "def": "Un défi, une épreuve à relever.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Caritatif", "def": "Qui a pour but d'aider les personnes dans le besoin, humanitaire.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Pimenter", "def": "Rendre plus intéressant, ajouter de l'excitation.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Des wards", "def": "Unité de monnaie virtuelle dans l'application WeWard.", "doc": "Move to earn — Des applis qui paient pour marcher"}, {"mot": "Un podcast", "def": "Émission audio disponible en ligne, à écouter quand on veut.", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "Des archives", "def": "Documents anciens conservés (ici : enregistrements radio du passé).", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "Désuet", "def": "Qui n'est plus utilisé, ancien, passé de mode.", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "Interpeller", "def": "Surprendre, choquer, faire réagir fortement.", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "Un cagibi", "def": "Très petit espace de rangement, ici utilisé pour dire un tout petit appartement.", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "Être en tournée", "def": "Voyager de ville en ville pour donner des concerts.", "doc": "Paroles de femmes — Clara Luciani"}, {"mot": "La solitude", "def": "Le fait de se sentir seul, isolé des autres.", "doc": "SOS Amitié — Les jeunes et la solitude"}, {"mot": "SOS Amitié", "def": "Association française d'écoute et de prévention du suicide par téléphone.", "doc": "SOS Amitié — Les jeunes et la solitude"}, {"mot": "La crise sanitaire", "def": "La pandémie de COVID-19 et ses conséquences sur la société.", "doc": "SOS Amitié — Les jeunes et la solitude"}, {"mot": "Un appelant", "def": "Personne qui téléphone à un service d'aide.", "doc": "SOS Amitié — Les jeunes et la solitude"}, {"mot": "Un tchat", "def": "Messagerie instantanée en ligne pour échanger par écrit.", "doc": "SOS Amitié — Les jeunes et la solitude"}, {"mot": "La discrétion", "def": "Le fait d'agir sans attirer l'attention, en toute confidentialité.", "doc": "SOS Amitié — Les jeunes et la solitude"}]}, {"id": "b1-u1-b", "label": "B1 — Unité 1b", "title": "Communication et numérique", "words": [{"mot": "La dématérialisation", "def": "Le passage du format papier au format numérique.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "Un contrat dématérialisé", "def": "Un contrat sous forme électronique, sans version papier.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "Une signature électronique", "def": "Procédé numérique qui authentifie l'identité du signataire.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "Un litige", "def": "Un désaccord, un conflit entre deux parties.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "Un coffre-fort numérique", "def": "Espace de stockage en ligne sécurisé pour conserver ses documents.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "Un justificatif", "def": "Document qui sert de preuve officielle.", "doc": "Bye le papier — La dématérialisation"}, {"mot": "L'éloquence", "def": "L'art de bien parler en public, de convaincre par la parole.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Une prestation", "def": "Une performance, ce qu'on montre lors d'une épreuve.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Porter préjudice", "def": "Causer du tort, nuire à quelqu'un ou à quelque chose.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Un Summer Camp", "def": "Un stage d'été, un séjour organisé pendant les vacances.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Un orateur / une oratrice", "def": "Personne qui prend la parole en public.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Un coach", "def": "Un entraîneur, une personne qui guide et accompagne.", "doc": "Eloquentia HEC — Interview de Charlotte"}, {"mot": "Un talkie-walkie", "def": "Appareil de communication radio bidirectionnel, sans réseau téléphonique.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "Clivant(e)", "def": "Qui divise fortement les opinions, qui ne fait pas l'unanimité.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "Muter", "def": "Couper le son, mettre en silencieux.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "Un créneau", "def": "Ici : un positionnement, un segment de marché spécifique.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "L'immédiateté", "def": "Le caractère instantané, sans délai.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "Redouter", "def": "Avoir peur de, appréhender quelque chose.", "doc": "Ten Ten — L'appli talkie-walkie"}, {"mot": "Louer", "def": "Ici : payer pour disposer d'un service ou de la compagnie de quelqu'un.", "doc": "Tout se loue, même les amis !"}, {"mot": "Un convive", "def": "Personne invitée à un repas, un participant à un événement.", "doc": "Tout se loue, même les amis !"}, {"mot": "Moyennant", "def": "En échange de, au prix de.", "doc": "Tout se loue, même les amis !"}, {"mot": "Grosso modo", "def": "Approximativement, en gros.", "doc": "Tout se loue, même les amis !"}, {"mot": "Un échange de bons procédés", "def": "Chacun rend service à l'autre, réciprocité.", "doc": "Tout se loue, même les amis !"}, {"mot": "Changer comme de chemise", "def": "Changer très souvent, facilement et sans hésitation.", "doc": "Tout se loue, même les amis !"}, {"mot": "Un job étudiant", "def": "Emploi à temps partiel exercé par un étudiant pour financer ses études.", "doc": "Comment trouver un bon job étudiant ?"}, {"mot": "Le babysitting", "def": "Garde d'enfants à domicile, souvent le soir ou le week-end.", "doc": "Comment trouver un bon job étudiant ?"}, {"mot": "Un collecteur de dons", "def": "Personne qui sollicite des passants pour recueillir de l'argent pour une cause.", "doc": "Comment trouver un bon job étudiant ?"}, {"mot": "Le rectorat", "def": "Administration de l'Éducation nationale au niveau régional.", "doc": "Comment trouver un bon job étudiant ?"}, {"mot": "Un désistement", "def": "Le fait de renoncer, de se retirer d'un poste ou d'une candidature.", "doc": "Comment trouver un bon job étudiant ?"}, {"mot": "Redoubler", "def": "Refaire la même année d'études parce qu'on n'a pas réussi.", "doc": "Comment trouver un bon job étudiant ?"}]}, {"id": "b1-u2-a", "label": "B1 — Unité 2a", "title": "Monde du travail", "words": [{"mot": "Cofondateur", "def": "Personne qui a créé une entreprise avec d'autres.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Infuser", "def": "Ici : transmettre progressivement, diffuser dans un groupe.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Bouger les lignes / les codes", "def": "Changer les habitudes, innover, remettre en question les normes.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Le statu quo", "def": "La situation actuelle, l'état des choses sans changement.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Un enjeu sociétal", "def": "Un défi important qui concerne la société dans son ensemble.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Postuler", "def": "Présenter sa candidature pour un poste, un emploi.", "doc": "Bertrand — Welcome to the Jungle"}, {"mot": "Le chômage", "def": "Situation d'une personne qui n'a pas d'emploi et en cherche un.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "L'entrepreneuriat social", "def": "Création d'entreprises dont l'objectif est de résoudre des problèmes de société.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "Le mentorat", "def": "Accompagnement par une personne expérimentée qui guide et conseille.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "L'insertion professionnelle", "def": "Le processus d'entrée dans le monde du travail.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "Un partenaire", "def": "Personne ou organisation avec qui on collabore sur un projet.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "Le leadership", "def": "La capacité à diriger, à guider un groupe vers un objectif commun.", "doc": "Burundi — Un programme pour l'emploi des jeunes"}, {"mot": "Le fossé générationnel", "def": "La différence de valeurs et de comportements entre les générations.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Le télétravail", "def": "Le fait de travailler à distance, depuis chez soi.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Démissionner", "def": "Quitter volontairement son emploi.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Payé au lance-pierre", "def": "Très mal payé, avec un salaire insuffisant.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Le SMIC", "def": "Salaire minimum légal en France.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Les horaires balisés", "def": "Des heures de travail fixes et limitées, sans débordement.", "doc": "La génération Z bouscule les codes du travail"}, {"mot": "Le cortex préfrontal", "def": "Partie avant du cerveau, responsable de la réflexion et de l'analyse.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "Primordial", "def": "Absolument nécessaire, fondamental.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "Se régénérer", "def": "Récupérer ses forces, se renouveler.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "Accabler", "def": "Surcharger, écraser sous le poids de quelque chose.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "La cohérence cardiaque", "def": "Technique de respiration pour réduire le stress et se relaxer.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "Sans discontinuer", "def": "Sans arrêt, sans interruption.", "doc": "Les pauses au travail — Le cerveau"}, {"mot": "Un buzz", "def": "Un phénomène viral, une forte attention médiatique sur Internet.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}, {"mot": "Un bachelor", "def": "Diplôme de premier cycle universitaire (bac+3), souvent en école privée.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}, {"mot": "La communication digitale", "def": "Stratégies de communication utilisant les outils numériques et Internet.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}, {"mot": "Une alternance", "def": "Formation qui alterne entre cours à l'école et travail en entreprise.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}, {"mot": "Un CV (curriculum vitae)", "def": "Document résumant le parcours, les études et les compétences d'une personne.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}, {"mot": "Un hors-série", "def": "Numéro spécial, en dehors de la programmation habituelle.", "doc": "Léna Jouault — Le CV qui a fait le buzz"}]}, {"id": "b1-u2-b", "label": "B1 — Unité 2b", "title": "Parcours et vocations", "words": [{"mot": "Une revue de presse", "def": "Lecture et synthèse des principaux articles des journaux du jour.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "Un podcast", "def": "Émission audio disponible en ligne, à écouter quand on veut.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "Une conférence de presse", "def": "Réunion où une personnalité répond aux questions des journalistes.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "L'Eurostar", "def": "Train à grande vitesse reliant Londres à Paris par le tunnel sous la Manche.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "Un agent", "def": "Personne qui gère la carrière et les contrats d'un sportif.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "La Ligue des Champions", "def": "Compétition européenne de football réunissant les meilleurs clubs.", "doc": "Julien Laurens — Journaliste sportif"}, {"mot": "Le coworking", "def": "Partage d'espaces de travail entre professionnels indépendants.", "doc": "La montée en puissance du coworking"}, {"mot": "Un travailleur indépendant", "def": "Personne qui travaille à son compte, sans employeur.", "doc": "La montée en puissance du coworking"}, {"mot": "Un freelance", "def": "Travailleur autonome qui propose ses services à différents clients.", "doc": "La montée en puissance du coworking"}, {"mot": "Un comparateur", "def": "Site web qui permet de comparer les prix et services de différents prestataires.", "doc": "La montée en puissance du coworking"}, {"mot": "Se reconvertir", "def": "Changer de métier, de carrière professionnelle.", "doc": "La montée en puissance du coworking"}, {"mot": "En plein essor", "def": "En forte croissance, en plein développement.", "doc": "La montée en puissance du coworking"}, {"mot": "Une vocation", "def": "Un appel intérieur profond vers un métier ou une mission de vie.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Inéluctable", "def": "Qui ne peut pas être évité, inévitable.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Prendre soin de", "def": "S'occuper de quelqu'un avec attention et bienveillance.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Un professionnel de santé", "def": "Personne qui exerce un métier dans le domaine médical.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Fasciner", "def": "Captiver fortement, émerveiller.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Lutter contre", "def": "Combattre, se battre pour empêcher quelque chose.", "doc": "Pourquoi j'ai choisi médecine"}, {"mot": "Un scaphandre", "def": "Combinaison étanche utilisée par les astronautes dans l'espace.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "Un calme olympien", "def": "Un sang-froid exceptionnel, une sérénité totale face au danger.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "Un trombinoscope", "def": "Album photo regroupant les portraits des membres d'un groupe.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "Ceinture noire", "def": "Grade élevé dans un art martial, signe d'expertise.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "La troisième mi-temps", "def": "Moment convivial après un match de rugby, souvent autour d'un repas.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "Supaéro", "def": "École d'ingénieurs aéronautiques à Toulouse, parmi les plus prestigieuses de France.", "doc": "Supaéro — L'école de Thomas Pesquet"}, {"mot": "Une immersion", "def": "Plongée totale dans un environnement pour apprendre par l'expérience.", "doc": "Vis mon job — Tester un nouveau métier"}, {"mot": "Une reconversion", "def": "Changement complet de métier ou de carrière professionnelle.", "doc": "Vis mon job — Tester un nouveau métier"}, {"mot": "Un food truck", "def": "Camion aménagé pour vendre de la nourriture dans la rue.", "doc": "Vis mon job — Tester un nouveau métier"}, {"mot": "La BPI", "def": "Banque Publique d'Investissement, organisme qui aide les entrepreneurs en France.", "doc": "Vis mon job — Tester un nouveau métier"}, {"mot": "Rungis", "def": "Le plus grand marché de gros alimentaire au monde, près de Paris.", "doc": "Vis mon job — Tester un nouveau métier"}, {"mot": "Une start-up", "def": "Jeune entreprise innovante, souvent dans le secteur technologique.", "doc": "Vis mon job — Tester un nouveau métier"}]}, {"id": "b1-u3-a", "label": "B1 — Unité 3a", "title": "Santé et bien-être", "words": [{"mot": "La sérotonine", "def": "Hormone du bien-être, régule l'humeur et le sommeil.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "Les endorphines", "def": "Molécules produites par le cerveau qui réduisent la douleur et procurent du plaisir.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "Le cortisol", "def": "Hormone du stress, produite par le corps en situation de tension.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "L'ocytocine", "def": "Hormone de l'attachement et du lien social.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "Un anxiolytique", "def": "Médicament qui diminue l'anxiété et le stress.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "Addictif", "def": "Qui crée une dépendance, dont on ne peut plus se passer.", "doc": "Dr Jimmy Mohamed — Santé mentale sans médicaments"}, {"mot": "Le renforcement musculaire", "def": "Exercices visant à rendre les muscles plus forts et toniques.", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "La posture", "def": "La position du corps, la manière de se tenir.", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "Un réformeur", "def": "Machine de Pilates avec un chariot mobile, des ressorts et des sangles.", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "La scoliose", "def": "Déformation de la colonne vertébrale, fréquente chez les jeunes.", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "Cartonner", "def": "Avoir un très grand succès (familier).", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "Préconiser", "def": "Recommander fortement, conseiller.", "doc": "Le Pilates — Ce sport qui cartonne"}, {"mot": "Contagieux", "def": "Qui se transmet facilement d'une personne à l'autre.", "doc": "La rigologie — La science du rire"}, {"mot": "Les neurones miroirs", "def": "Cellules du cerveau qui s'activent quand on observe une action chez autrui.", "doc": "La rigologie — La science du rire"}, {"mot": "La rigologie", "def": "Discipline qui utilise le rire pour libérer les émotions et retrouver la joie.", "doc": "La rigologie — La science du rire"}, {"mot": "Le yoga du rire", "def": "Pratique combinant exercices de rire et respiration, créée en Inde.", "doc": "La rigologie — La science du rire"}, {"mot": "Un stimuli", "def": "Élément qui provoque une réaction physique ou émotionnelle.", "doc": "La rigologie — La science du rire"}, {"mot": "Ludique", "def": "Qui est lié au jeu, amusant.", "doc": "La rigologie — La science du rire"}, {"mot": "Le zazen", "def": "Méthode de méditation japonaise pratiquée en position assise.", "doc": "Le zazen — Méditation japonaise"}, {"mot": "La méditation", "def": "Pratique de concentration de l'esprit pour atteindre le calme intérieur.", "doc": "Le zazen — Méditation japonaise"}, {"mot": "Un temple", "def": "Lieu de culte et de pratique spirituelle.", "doc": "Le zazen — Méditation japonaise"}, {"mot": "Un maître", "def": "Ici : personne experte qui enseigne et guide la pratique.", "doc": "Le zazen — Méditation japonaise"}, {"mot": "S'initier", "def": "Découvrir et apprendre les bases d'une pratique pour la première fois.", "doc": "Le zazen — Méditation japonaise"}, {"mot": "Recharger les batteries", "def": "Retrouver son énergie, se ressourcer.", "doc": "Le zazen — Méditation japonaise"}]}, {"id": "b1-u3-b", "label": "B1 — Unité 3b", "title": "Modes de vie", "words": [{"mot": "Minimaliste", "def": "Qui choisit de vivre avec le strict minimum d'objets et de possessions.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "Épuré", "def": "Simplifié, débarrassé du superflu.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "Le bicarbonate de soude", "def": "Produit naturel utilisé pour le nettoyage et l'hygiène.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "Le contrepied", "def": "Le choix opposé à ce qui est habituel ou attendu.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "L'insoutenabilité", "def": "Le caractère de ce qui ne peut pas durer, qui n'est pas viable.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "Être happé", "def": "Être absorbé, captivé de manière involontaire.", "doc": "Bienvenue chez une minimaliste"}, {"mot": "Délabré", "def": "En très mauvais état, qui a besoin de réparations importantes.", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "Optimiser", "def": "Tirer le meilleur parti de quelque chose, rendre plus efficace.", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "Le cachet", "def": "Le charme particulier, le caractère authentique d'un lieu.", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "Un condo (condominium)", "def": "Appartement dans un immeuble moderne (terme nord-américain).", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "Désincarné", "def": "Sans âme, sans personnalité, impersonnel.", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "Un photoshoot", "def": "Séance de photos organisée.", "doc": "La mini-maison la plus célèbre de Montréal"}, {"mot": "L'horloge biologique", "def": "Mécanisme interne du corps qui régule les cycles de veille et de sommeil.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "L'endormissement", "def": "Le moment où l'on commence à s'endormir.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "La température corporelle", "def": "La chaleur du corps humain, normalement autour de 37°C.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "Couche-tôt / couche-tard", "def": "Personne qui se couche tôt / tard le soir.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "Entre guillemets", "def": "Expression pour nuancer ce qu'on dit, marquer une réserve.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "Un impact", "def": "Un effet, une conséquence sur quelque chose.", "doc": "Faut-il faire du sport le matin ?"}, {"mot": "Un oxymore", "def": "Figure de style qui associe deux mots contradictoires (ex: maladie qui soigne).", "doc": "Mytho — La série sur le mensonge"}, {"mot": "L'effet papillon", "def": "Idée qu'une petite action peut provoquer une grande réaction en chaîne.", "doc": "Mytho — La série sur le mensonge"}, {"mot": "Une série chorale", "def": "Série qui suit plusieurs personnages dont les histoires s'entremêlent.", "doc": "Mytho — La série sur le mensonge"}, {"mot": "La post-vérité", "def": "Situation où les émotions comptent plus que les faits objectifs.", "doc": "Mytho — La série sur le mensonge"}, {"mot": "Jouer avec le feu", "def": "Prendre des risques dangereux qui peuvent avoir de graves conséquences.", "doc": "Mytho — La série sur le mensonge"}, {"mot": "Un pipeau (familier)", "def": "Un mensonge, une tromperie.", "doc": "Mytho — La série sur le mensonge"}]}, {"id": "b1-u4-a", "label": "B1 — Unité 4a", "title": "Écologie et créativité", "words": [{"mot": "Inonder", "def": "Ici : envahir complètement, être présent partout.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Échapper à", "def": "Éviter, se soustraire à quelque chose.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Au fil des ans", "def": "Progressivement, au cours des années.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Un smartphone", "def": "Téléphone portable intelligent avec écran tactile.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Le muesli", "def": "Mélange de céréales, fruits secs et graines pour le petit-déjeuner.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Bio", "def": "Produit issu de l'agriculture biologique, sans produits chimiques.", "doc": "Le plastique dans notre quotidien"}, {"mot": "Une exposition", "def": "Présentation d'œuvres d'art ou d'objets au public dans un lieu dédié.", "doc": "L'exposition écolo au musée"}, {"mot": "Des matériaux recyclés", "def": "Matières qui ont été récupérées et transformées pour un nouvel usage.", "doc": "L'exposition écolo au musée"}, {"mot": "Le réchauffement climatique", "def": "Augmentation progressive de la température moyenne de la Terre.", "doc": "L'exposition écolo au musée"}, {"mot": "Une brochure", "def": "Petit livret d'information sur un événement ou un lieu.", "doc": "L'exposition écolo au musée"}, {"mot": "Convaincre", "def": "Persuader quelqu'un, lui faire changer d'avis.", "doc": "L'exposition écolo au musée"}, {"mot": "L'art moderne", "def": "Courant artistique caractérisé par l'innovation et la rupture avec la tradition.", "doc": "L'exposition écolo au musée"}, {"mot": "Le street art", "def": "Art réalisé dans l'espace public, souvent sur les murs ou le mobilier urbain.", "doc": "Nice — Street art sur les containers"}, {"mot": "Customiser", "def": "Personnaliser, décorer de manière unique et originale.", "doc": "Nice — Street art sur les containers"}, {"mot": "Carte blanche", "def": "Liberté totale de créer sans contrainte ni directive.", "doc": "Nice — Street art sur les containers"}, {"mot": "Un container / une poubelle", "def": "Grand récipient pour collecter les déchets.", "doc": "Nice — Street art sur les containers"}, {"mot": "Dispatcher", "def": "Répartir, distribuer en différents endroits.", "doc": "Nice — Street art sur les containers"}, {"mot": "Une vocation", "def": "Ici : un objectif, une mission, une finalité.", "doc": "Nice — Street art sur les containers"}, {"mot": "Un défilé", "def": "Présentation de vêtements ou créations devant un public, comme un show de mode.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Un aboutissement", "def": "Le résultat final, l'accomplissement d'un long travail.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Sensibiliser", "def": "Rendre les gens conscients d'un problème, éveiller leur attention.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Le tri des déchets", "def": "L'action de séparer les déchets par catégorie pour le recyclage.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Un masque chirurgical", "def": "Masque jetable utilisé pour se protéger des germes.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Une devise", "def": "Une phrase ou un principe qui guide les actions de quelqu'un.", "doc": "Une artiste transforme les déchets en tenues"}, {"mot": "Le suremballage", "def": "L'excès d'emballages autour des produits, souvent en plastique.", "doc": "Février sans supermarché"}, {"mot": "Le commerce de proximité", "def": "Les petits magasins et marchés situés près de chez soi.", "doc": "Février sans supermarché"}, {"mot": "Un magasin en vrac", "def": "Boutique où les produits sont vendus sans emballage, au poids.", "doc": "Février sans supermarché"}, {"mot": "Un panier", "def": "Ici : assortiment de produits frais livrés régulièrement par un producteur.", "doc": "Février sans supermarché"}, {"mot": "Le juste prix", "def": "Un prix équitable qui rémunère correctement le producteur.", "doc": "Février sans supermarché"}, {"mot": "Capitaliste", "def": "Relatif à un système économique fondé sur le profit et la propriété privée.", "doc": "Février sans supermarché"}]}, {"id": "b1-u4-b", "label": "B1 — Unité 4b", "title": "Environnement et solidarité", "words": [{"mot": "Le WWF", "def": "Organisation mondiale de protection de la nature et de l'environnement.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "Enfouir", "def": "Enterrer sous terre, notamment des déchets dans une décharge.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "L'économie circulaire", "def": "Modèle visant à réutiliser et recycler pour réduire les déchets.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "Un gobelet", "def": "Verre jetable, souvent en plastique.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "Une barquette", "def": "Petit récipient plat pour emballer des aliments.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "Inciter", "def": "Encourager fortement à faire quelque chose.", "doc": "La France — Déchets plastiques en Méditerranée"}, {"mot": "Une haie", "def": "Rangée d'arbustes plantés pour délimiter ou protéger un terrain.", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "La biodiversité", "def": "La variété des espèces vivantes (animaux, plantes, insectes) dans un milieu.", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "Un maraîcher", "def": "Agriculteur spécialisé dans la culture des légumes.", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "Les nuisibles", "def": "Animaux ou insectes qui causent des dégâts aux cultures.", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "Un passereau", "def": "Petit oiseau chanteur (moineau, mésange, rouge-gorge...).", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "La LPO", "def": "Ligue pour la Protection des Oiseaux, association environnementale.", "doc": "Planter des haies pour protéger la biodiversité"}, {"mot": "Le circuit court", "def": "Vente directe du producteur au consommateur, sans intermédiaire.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "Un maraîcher", "def": "Agriculteur qui cultive des légumes.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "Une épicerie associative", "def": "Magasin géré par une association, souvent par des bénévoles.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "Le Sundgau", "def": "Région du sud de l'Alsace.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "Les surplus", "def": "Ce qui reste en trop après la vente ou la récolte.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "La vente directe", "def": "Vente sans intermédiaire, du producteur au consommateur.", "doc": "L'épicerie solidaire de Kembs"}, {"mot": "Un artiste plasticien", "def": "Artiste qui crée des œuvres en trois dimensions avec divers matériaux.", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "Ennoblir", "def": "Rendre noble, donner de la valeur et de la beauté à quelque chose.", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "La métamorphose", "def": "Transformation profonde d'une chose en une autre.", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "Un mégot", "def": "Reste d'une cigarette après qu'on l'a fumée.", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "Ciseler", "def": "Découper avec précision et finesse, comme un orfèvre.", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "Se faner", "def": "Perdre sa fraîcheur et mourir (pour une fleur).", "doc": "William Amor — Des fleurs éternelles en déchets"}, {"mot": "L'écoféminisme", "def": "Mouvement liant féminisme et écologie, né en France en 1974.", "doc": "L'écologie — Un truc de femme ?"}, {"mot": "Efféminé", "def": "Perçu comme féminin, associé aux femmes (souvent péjoratif pour les hommes).", "doc": "L'écologie — Un truc de femme ?"}, {"mot": "La décroissance", "def": "Modèle qui prône la réduction de la production et de la consommation.", "doc": "L'écologie — Un truc de femme ?"}, {"mot": "Un tsunami", "def": "Vague géante destructrice provoquée par un séisme sous-marin.", "doc": "L'écologie — Un truc de femme ?"}, {"mot": "Un sac en toile", "def": "Sac réutilisable en tissu, alternative au sac plastique.", "doc": "L'écologie — Un truc de femme ?"}, {"mot": "Les informations de repli", "def": "Consignes de sécurité pour se mettre à l'abri en cas de catastrophe.", "doc": "L'écologie — Un truc de femme ?"}]}, {"id": "b1-u5-a", "label": "B1 — Unité 5a", "title": "Sciences et découvertes", "words": [{"mot": "Un combustible", "def": "Matière qui brûle pour produire de la chaleur ou de l'énergie.", "doc": "Un combustible écologique au Congo"}, {"mot": "Le makala", "def": "Charbon de bois utilisé comme combustible en Afrique centrale.", "doc": "Un combustible écologique au Congo"}, {"mot": "Biodégradable", "def": "Qui peut être décomposé naturellement par des organismes vivants.", "doc": "Un combustible écologique au Congo"}, {"mot": "Décimer", "def": "Détruire en grande quantité, réduire considérablement.", "doc": "Un combustible écologique au Congo"}, {"mot": "Le conditionnement", "def": "L'emballage et la préparation d'un produit pour la vente.", "doc": "Un combustible écologique au Congo"}, {"mot": "Un internat", "def": "Établissement où les enfants vivent et dorment sur place.", "doc": "Un combustible écologique au Congo"}, {"mot": "Un vol habité", "def": "Un voyage spatial avec des êtres humains à bord.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "Géopolitique", "def": "Qui concerne les rapports de pouvoir entre les pays et les régions du monde.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "Les retombées", "def": "Les conséquences positives, les bénéfices indirects.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "S'arracher à ses racines", "def": "Quitter son lieu d'origine, aller au-delà de ce qu'on connaît.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "Fiabiliser", "def": "Rendre plus sûr, plus fiable et plus stable.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "SpaceX", "def": "Entreprise spatiale fondée par Elon Musk.", "doc": "Pourquoi il faut aller sur Mars"}, {"mot": "Une cavité", "def": "Un creux, un espace vide dans la roche ou le sol.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "Une grotte", "def": "Caverne naturelle dans la roche.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "La préhistoire", "def": "Période la plus ancienne de l'histoire humaine, avant l'écriture.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "Un mammouth", "def": "Grand animal préhistorique ressemblant à un éléphant, aujourd'hui disparu.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "Un croquis", "def": "Un dessin rapide fait à la main pour représenter quelque chose.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "Un lieu-dit", "def": "Un endroit désigné par un nom traditionnel dans une région.", "doc": "La découverte de la grotte de Lascaux"}, {"mot": "Décrypter", "def": "Analyser et expliquer de manière claire quelque chose de complexe.", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}, {"mot": "La ligne éditoriale", "def": "L'orientation, les choix de contenu d'un média.", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}, {"mot": "Le soft power", "def": "Influence d'un pays par la culture et l'économie plutôt que par la force.", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}, {"mot": "Le streaming", "def": "Diffusion de contenu audio ou vidéo en continu sur Internet.", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}, {"mot": "Les coulisses", "def": "Ce qui se passe en secret, derrière la scène visible.", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}, {"mot": "Un format", "def": "La forme, la structure d'un contenu média (durée, style, support).", "doc": "Hugo informe — Le podcast d'actualité pour les jeunes"}]}];
+var vocabFilter='all';
+function renderVocabulaire(){
+var el=document.getElementById('tab-vocabulaire');
+var q=(document.getElementById('vocabSearch')||{}).value||'';
+var qn=q.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+var h='';
+// Count
+var total=VOCAB.reduce(function(s,u){return s+u.words.length},0);
+// Search
+h+='<div class="vocab-count-badge"><div class="vocab-count-num" id="vocabTotal">'+total+' mots</div><div style="font-size:.82rem;color:var(--text-light)">Toutes les fiches de vocabulaire</div></div>';
+h+='<input type="text" class="vocab-search" id="vocabSearch" placeholder="Rechercher un mot ou une définition..." value="'+q.replace(/"/g,'&quot;')+'" oninput="renderVocabulaire()">';
+h+='<div class="vocab-filters"><button class="vf-btn '+(vocabFilter==='all'?'active':'')+'" onclick="vocabFilter=\'all\';renderVocabulaire()">Tout</button>';
+VOCAB.forEach(function(u){var cls=u.label.indexOf('A2')!==-1?'a2':'';h+='<button class="vf-btn '+cls+(vocabFilter===u.id?' active':'')+'" onclick="vocabFilter=\''+u.id+'\';renderVocabulaire()">'+u.label.split(' — ')[1]+'</button>'});
+h+='</div>';
+var shown=0;
+VOCAB.forEach(function(unit,ui){
+  if(vocabFilter!=='all'&&unit.id!==vocabFilter)return;
+  var isA2=unit.label.indexOf('A2')!==-1;
+  var fw=unit.words.filter(function(w){if(!qn)return true;var m=w.mot.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');var d=w.def.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');return m.indexOf(qn)!==-1||d.indexOf(qn)!==-1});
+  if(!fw.length)return;shown+=fw.length;
+  h+='<div class="vocab-unit" style="animation-delay:'+(ui*0.04)+'s"><div class="vocab-unit-header"><span class="pill '+(isA2?'chip-a2':'chip-b1')+'">'+unit.label+'</span><span style="font-family:\'Playfair Display\',serif;font-weight:800;font-size:.95rem">'+unit.title+'</span><span class="vocab-unit-count">'+fw.length+' mots</span></div>';
+  var byDoc={};fw.forEach(function(w){if(!byDoc[w.doc])byDoc[w.doc]=[];byDoc[w.doc].push(w)});
+  Object.keys(byDoc).forEach(function(doc){
+    h+='<div class="vocab-doc">🎧 '+doc+'</div>';
+    byDoc[doc].forEach(function(w){
+      var mot=w.mot,def=w.def;
+      if(qn){var re=new RegExp('('+qn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');mot=mot.replace(re,'<mark style="background:rgba(0,210,211,.25);border-radius:3px;padding:0 2px">$1</mark>');def=def.replace(re,'<mark style="background:rgba(0,210,211,.25);border-radius:3px;padding:0 2px">$1</mark>')}
+      h+='<div class="vocab-word"><div class="vocab-mot">'+mot+'</div><div class="vocab-def">'+def+'</div></div>'});
+  });
+  h+='</div>';
+});
+if(!shown)h+='<div style="text-align:center;padding:40px;color:var(--text-light)"><div style="font-size:2rem;margin-bottom:8px">🔍</div>Aucun mot trouvé</div>';
+el.innerHTML=h;
+var tc=document.getElementById('vocabTotal');if(tc)tc.textContent=shown+' mot'+(shown>1?'s':'');
+}
+
+// ===== MÉTHODO =====
+function renderMethodo(){
+var el=document.getElementById('tab-methodo');
+var h='';
+
+// Hero
+h+='<div class="meth-hero" style="animation:fadeUp .5s ease">';
+h+='<div style="font-size:2.5rem;margin-bottom:8px">🧠🎧</div>';
+h+='<h2>Réussir la Compréhension Orale</h2>';
+h+='<p>Tes armes secrètes pour le DELF B1 — et au-delà !</p>';
+h+='</div>';
+
+// === SECTION 1 : Avant l'écoute ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .05s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--purple),var(--violet))">1</span> Avant l\'écoute — Préparer le terrain</div>';
+h+='<div class="meth-cards">';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--purple)"><div class="meth-card-icon">🔍</div><div class="meth-card-title">Lis les questions d\'abord !</div><div class="meth-card-text">C\'est ta <strong>boussole</strong>. Les questions te disent exactement quoi chercher. Souligne les mots-clés dans ta tête : <strong>qui ? quoi ? où ? quand ? pourquoi ?</strong></div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--violet)"><div class="meth-card-icon">🎯</div><div class="meth-card-title">Anticipe le vocabulaire</div><div class="meth-card-text">Le titre du document te donne le <strong>thème</strong>. Pense à tous les mots que tu connais sur ce sujet. Si c\'est sur l\'écologie, pense : recyclage, pollution, biodiversité…</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--magenta)"><div class="meth-card-icon">🏷️</div><div class="meth-card-title">Repère le type de question</div><div class="meth-card-text"><strong>QCM</strong> = lis toutes les options avant. <strong>V/F</strong> = reformule l\'affirmation. <strong>Ouverte</strong> = prépare-toi à écrire un mot ou une phrase courte.</div></div>';
+
+h+='</div></div>';
+
+// === SECTION 2 : Première écoute ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .1s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--teal),var(--electric))">2</span> Première écoute — Comprendre le global</div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🌊</div><div class="meth-tip-content"><div class="meth-tip-title">Laisse-toi porter</div><div class="meth-tip-text">Première écoute = <strong>compréhension globale</strong>. Ne panique pas si tu ne comprends pas tout. Cherche : <strong>Qui parle ? De quoi ? Dans quelle situation ?</strong></div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🎵</div><div class="meth-tip-content"><div class="meth-tip-title">Écoute le ton et l\'intonation</div><div class="meth-tip-text">Le ton te dit <strong>beaucoup</strong> : enthousiaste ? critique ? ironique ? triste ? C\'est souvent la clé pour les questions sur l\'opinion du locuteur.</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">✏️</div><div class="meth-tip-content"><div class="meth-tip-title">Note les mots-clés</div><div class="meth-tip-text">Pas des phrases ! Juste des <strong>mots repères</strong> : noms, chiffres, lieux, dates. Ils te guideront à la deuxième écoute.</div></div></div>';
+
+h+='</div>';
+
+// === SECTION 3 : Deuxième écoute ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .15s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--gold),var(--amber))">3</span> Deuxième écoute — Chasser les détails</div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🎯</div><div class="meth-tip-content"><div class="meth-tip-title">Écoute ciblée</div><div class="meth-tip-text">Cette fois, tu sais ce que tu cherches. <strong>Concentre-toi sur les questions non répondues.</strong> L\'info viendra — sois patient(e).</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🔄</div><div class="meth-tip-content"><div class="meth-tip-title">Vérifie tes premières réponses</div><div class="meth-tip-text">Tu avais coché B ? Réécoute le passage concerné. Parfois, la <strong>deuxième écoute change tout</strong>.</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🧩</div><div class="meth-tip-content"><div class="meth-tip-title">Les connecteurs sont tes amis</div><div class="meth-tip-text"><strong>« Mais »</strong> = changement de direction. <strong>« Donc »</strong> = conséquence. <strong>« En fait »</strong> = correction. <strong>« Par contre »</strong> = opposition. Ce sont des panneaux routiers ! 🛣️</div></div></div>';
+
+h+='</div>';
+
+// === SECTION 4 : Stratégies par type ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .2s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--coral),var(--magenta))">4</span> Stratégies par type de question</div>';
+h+='<div class="meth-cards">';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--purple)"><div class="meth-card-icon">🅰️</div><div class="meth-card-title">QCM (choix multiples)</div><div class="meth-card-text">• Lis <strong>toutes</strong> les options avant l\'écoute<br>• Élimine les réponses absurdes d\'abord<br>• Attention aux <strong>pièges</strong> : un mot du document ≠ bonne réponse<br>• Le bon choix est souvent une <strong>reformulation</strong>, pas une copie mot à mot</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--teal)"><div class="meth-card-icon">✅❌</div><div class="meth-card-title">Vrai / Faux (+ justification)</div><div class="meth-card-text">• Reformule l\'affirmation <strong>dans ta tête</strong><br>• Écoute si le document <strong>confirme ou contredit</strong><br>• Pour la justification : cite un <strong>élément précis</strong> du document<br>• <strong>Pas d\'invention</strong> — reste fidèle à ce que tu entends</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--green)"><div class="meth-card-icon">💬</div><div class="meth-card-title">Questions ouvertes</div><div class="meth-card-text">• Réponds avec des <strong>mots simples</strong> — pas besoin de phrases complètes<br>• L\'orthographe n\'est <strong>pas pénalisée</strong> si le mot est reconnaissable<br>• En cas de doute, écris ce que tu entends <strong>phonétiquement</strong></div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--pink)"><div class="meth-card-icon">🔗</div><div class="meth-card-title">Associations</div><div class="meth-card-text">• Commence par les associations dont tu es <strong>sûr(e)</strong><br>• Procède par <strong>élimination</strong> pour les autres<br>• Relis tout à la fin pour vérifier la <strong>cohérence</strong></div></div>';
+
+h+='</div></div>';
+
+// === SECTION 5 : Pièges classiques ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .25s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--coral),var(--amber))">5</span> Les pièges classiques du DELF B1</div>';
+
+h+='<div class="meth-do-dont">';
+h+='<div class="meth-do"><div class="meth-do-title">✅ À faire</div><ul class="meth-list">';
+h+='<li>Répondre à <strong>toutes</strong> les questions, même au hasard</li>';
+h+='<li>Utiliser le contexte quand un mot est inconnu</li>';
+h+='<li>Lire les questions <strong>pendant</strong> les pauses</li>';
+h+='<li>Faire confiance à ta première intuition</li>';
+h+='<li>Accepter de ne pas tout comprendre</li>';
+h+='<li>Noter les chiffres et noms propres immédiatement</li>';
+h+='</ul></div>';
+
+h+='<div class="meth-dont"><div class="meth-dont-title">❌ À éviter</div><ul class="meth-list">';
+h+='<li>Bloquer sur un mot incompris</li>';
+h+='<li>Changer de réponse sans raison solide</li>';
+h+='<li>Écrire ce que tu <strong>penses</strong> au lieu de ce que tu <strong>entends</strong></li>';
+h+='<li>Confondre « le locuteur dit que » et « le locuteur pense que »</li>';
+h+='<li>Laisser une question vide (0 point garanti !)</li>';
+h+='<li>Paniquer si le débit est rapide</li>';
+h+='</ul></div>';
+h+='</div></div>';
+
+// === SECTION 6 : Booster son écoute ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .3s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--green),var(--mint))">6</span> Booster son écoute au quotidien 🚀</div>';
+h+='<div class="meth-cards">';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--green)"><div class="meth-card-icon">🎧</div><div class="meth-card-title">Podcasts</div><div class="meth-card-text"><strong>Journal en français facile</strong> (RFI) — 10 min/jour, parfait pour le B1. Aussi : <strong>Français Authentique</strong>, <strong>InnerFrench</strong>, <strong>Hugo Décrypte</strong>.</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--teal)"><div class="meth-card-icon">📺</div><div class="meth-card-title">Vidéos & séries</div><div class="meth-card-text">YouTube : <strong>1 jour 1 actu</strong>, <strong>Brut</strong>. Netflix/séries : commence avec les <strong>sous-titres en français</strong>, puis essaie sans. 20 min/jour changent tout.</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--electric)"><div class="meth-card-icon">🎵</div><div class="meth-card-title">Musique</div><div class="meth-card-text">Écoute en lisant les paroles, puis <strong>sans</strong>. Essaie de remplir les trous. Chansons de <strong>Stromae</strong>, <strong>Angèle</strong>, <strong>Clara Luciani</strong> — le français pop !</div></div>';
+
+h+='<div class="meth-card" style="border-left:3px solid var(--purple)"><div class="meth-card-icon">🗣️</div><div class="meth-card-title">La technique du shadowing</div><div class="meth-card-text">Écoute une phrase → <strong>répète immédiatement</strong> en imitant le rythme et l\'intonation. Ça entraîne ton oreille ET ta prononciation en même temps.</div></div>';
+
+h+='</div></div>';
+
+// === SECTION 7 : Le jour J ===
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .35s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--yellow),var(--gold))">7</span> Le jour de l\'épreuve 🏆</div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">😴</div><div class="meth-tip-content"><div class="meth-tip-title">Bien dormir la veille</div><div class="meth-tip-text">Ton cerveau traite les sons mieux quand il est <strong>reposé</strong>. Pas de révision marathon la nuit d\'avant !</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🧘</div><div class="meth-tip-content"><div class="meth-tip-title">Respire avant de commencer</div><div class="meth-tip-text">3 respirations profondes. Le stress <strong>bloque</strong> la compréhension. Tu as préparé, tu es prêt(e).</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">⏱️</div><div class="meth-tip-content"><div class="meth-tip-title">Gère ton temps</div><div class="meth-tip-text">Utilise <strong>chaque seconde</strong> de pause pour lire les questions suivantes. Ne reste pas bloqué(e) sur une réponse — passe et reviens.</div></div></div>';
+
+h+='<div class="meth-tip"><div class="meth-tip-icon">🃏</div><div class="meth-tip-content"><div class="meth-tip-title">Le joker = dernier recours</div><div class="meth-tip-text">Dans cette app, le joker coûte <strong>1 point</strong>. Utilise-le seulement si tu as <strong>plusieurs questions vides</strong> sur un document.</div></div></div>';
+
+h+='</div>';
+
+// Citation motivante
+h+='<div class="meth-quote" style="animation:fadeUp .5s ease .4s both">💡 « Comprendre une langue, ce n\'est pas traduire chaque mot — c\'est <strong>saisir le sens</strong>. »</div>';
+
+// Résumé flash
+h+='<div class="meth-section" style="animation:fadeUp .5s ease .42s both">';
+h+='<div class="meth-section-title"><span class="meth-num" style="background:linear-gradient(135deg,var(--coral),var(--pink))">⚡</span> Résumé flash — La méthode en 30 secondes</div>';
+h+='<div style="padding:20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,71,87,.04),rgba(108,92,231,.04));border:1.5px solid rgba(255,71,87,.1);font-size:.9rem;line-height:2">';
+h+='<strong>📖 Avant :</strong> Lis les questions → repère les mots-clés → anticipe le thème<br>';
+h+='<strong>🎧 1ère écoute :</strong> Comprends le global → note les mots repères<br>';
+h+='<strong>✏️ Pause :</strong> Réponds aux questions faciles → marque les doutes<br>';
+h+='<strong>🎧 2ème écoute :</strong> Cible les questions restantes → vérifie tes réponses<br>';
+h+='<strong>✅ Après :</strong> Réponds à TOUT → pas de case vide → confiance !';
+h+='</div></div>';
+
+el.innerHTML=h;
+}
+
+function updateObjectif(val){localStorage.setItem('co_objectif',val);renderObjectifs()}
+
+// ===== INIT =====
+renderWelcome();renderProgress();renderXP();renderCardIndicators();setTimeout(showMotivToast,2000);
+</script>
+</body>
+</html>
