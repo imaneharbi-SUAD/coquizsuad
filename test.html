@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Test</title></head>
+<body style="font-family:sans-serif;padding:40px;text-align:center">
+<h2>Test envoi - Methode Form</h2>
+<p id="s">Cliquez pour tester</p><br>
+<button onclick="go()" style="padding:20px 40px;font-size:1.2rem;cursor:pointer;background:#00d2d3;color:#fff;border:none;border-radius:12px">Tester</button>
+<iframe name="hiddenframe" style="display:none"></iframe>
+<script>
+function go(){
+var url='https://script.google.com/macros/s/AKfycbypkC7jKRonNL_kA6V_jOWB73BiJouukdDhvszB2x1LsCuFotnIbhf3zdUe4O3xUGGL/exec';
+var data=JSON.stringify({nom:"FORM",prenom:"Test",groupe:"Test",unite:"Test",niveau:"B1",note:16,pourcentage:80,date:new Date().toISOString(),dureeSecondes:90,penalty:0});
+var form=document.createElement('form');
+form.method='POST';
+form.action=url;
+form.target='hiddenframe';
+var input=document.createElement('input');
+input.type='hidden';
+input.name='data';
+input.value=data;
+form.appendChild(input);
+document.body.appendChild(form);
+form.submit();
+form.remove();
+document.getElementById('s').textContent='Envoye ! Verifiez le Google Sheet dans 5 secondes.';
+}
+</script>
+</body>
+</html>
